@@ -1,5 +1,7 @@
 package com.zzx.InsertionSort;
 
+import java.util.Arrays;
+
 /**
  * @ClassName InsertionSortDemo
  * @Description
@@ -11,14 +13,19 @@ public class InsertionSortDemo {
 
     private  void insertSort(int arr[], int n) {
         for (int i = 1; i < n; i ++) {
-            for(int j = i; j > 0; j --) {
-                if (arr[j] < arr[j - 1]) {
-                    int temp = arr[j - 1];
-                    arr[j - 1] = arr[j];
-                    arr[j] = temp;
+            int e = arr[i]; // 排序到的位置
+            int j;
+            for (j = i; j > 0; j --) {
+                if (e < arr[j - 1]) { // 如果当前位置元素比前面的数字小
+//                    int temp = arr[j - 1];
+//                    arr[j - 1] = arr[j];
+//                    arr[j] = temp;
+                    arr[j] = arr[j - 1];// 把前面数字的值赋值到当前位置，等于向后移动一位
                 }
             }
+            arr[j] = e;// 此时j的值就是当前位置值要在的索引
         }
 
     }
+
 }
