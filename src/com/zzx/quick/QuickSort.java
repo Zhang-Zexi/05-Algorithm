@@ -1,5 +1,8 @@
 package com.zzx.quick;
 
+import java.util.Arrays;
+
+// 忘了在哪找的写法，没看太懂
 public class QuickSort {
 
     public static void quickSort(int arr[],int _left,int _right){
@@ -13,19 +16,30 @@ public class QuickSort {
                 while(right > left && arr[right] >= temp)
                     right --;        //从右往左扫描，找到第一个比基准元素小的元素
                 arr[left] = arr[right];  //找到这种元素arr[right]后与arr[left]交换
+                System.out.println("右交换：");
+                for(int element : arr){
+                    System.out.print(element+" ");
+                }
 
                 while(left < right && arr[left] <= temp)
                     left ++;         //从左往右扫描，找到第一个比基准元素大的元素
                 arr[right] = arr[left];  //找到这种元素arr[left]后，与arr[right]交换
-
+                System.out.println("左交换：");
+                for(int element : arr){
+                    System.out.print(element+" ");
+                }
             }
             arr[right] = temp;    //基准元素归位
-            quickSort(arr,_left,left-1);  //对基准元素左边的元素进行递归排序
+            System.out.println("归为后：");
+            for(int element : arr){
+                System.out.print(element+" ");
+            }
+            quickSort(arr, _left,left-1);  //对基准元素左边的元素进行递归排序
             quickSort(arr, right+1,_right);  //对基准元素右边的进行递归排序
         }
     }
     public static void main(String[] args) {
-        int array[] = {10,5,3,1,7,2,8};
+        int array[] = {5,10,3,1,7,2,8};
         System.out.println("排序之前：");
         for(int element : array){
             System.out.print(element+" ");
