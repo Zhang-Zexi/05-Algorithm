@@ -1,5 +1,8 @@
 package com.zzx.mergeSort;
 
+import com.zzx.InsertionSort.InsertionSort;
+import com.zzx.InsertionSort.InsertionSortDemo;
+
 import java.util.Arrays;
 
 /**
@@ -14,11 +17,13 @@ public class MergeSort {
         if (l >= r) { // l = r 说明只有一个元素，数据集为空，l > r说明不存在，数据集为空
             return;
         }
+
         int mid = (l + r) / 2;//找到中间数（分开后左边数组最后一位||l+r其实有溢出的风险）
         mergeSort(arr, 0, mid);
         mergeSort(arr, mid + 1, r);
-        merge(arr, l, mid, r);
-
+        if (arr[mid] > arr[mid + 1]) { // 因为arr[mid]<arr[mid + 1]那么arr是有序的
+            merge(arr, l, mid, r);
+        }
     }
 
     private void merge(int arr[], int l, int mid, int r) {
