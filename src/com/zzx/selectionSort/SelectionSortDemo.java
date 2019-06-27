@@ -1,6 +1,8 @@
 package com.zzx.selectionSort;
 
 import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * @ClassName SelectionSortDemo
@@ -30,6 +32,5 @@ public class SelectionSortDemo {
         SelectionSortDemo s = new SelectionSortDemo();
         s.selectionSort(arr, arr.length);
         System.out.println(Arrays.toString(arr));
-
     }
 }
