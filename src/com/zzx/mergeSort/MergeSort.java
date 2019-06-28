@@ -19,7 +19,7 @@ public class MergeSort {
         }
 
         int mid = (l + r) / 2;//找到中间数（分开后左边数组最后一位||l+r其实有溢出的风险）
-        mergeSort(arr, 0, mid);
+        mergeSort(arr, l, mid);
         mergeSort(arr, mid + 1, r);
         if (arr[mid] > arr[mid + 1]) { // 因为arr[mid]<arr[mid + 1]那么arr是有序的
             merge(arr, l, mid, r);
@@ -53,7 +53,7 @@ public class MergeSort {
     public static void main(String[] args) {
         int[] arr = {12,33,28,86,15,62,9,38};
         MergeSort m = new MergeSort();
-        m.mergeSort(arr, 1, arr.length - 1);
+        m.mergeSort(arr, 0, arr.length - 1);
         System.out.println(Arrays.toString(arr));
 
     }

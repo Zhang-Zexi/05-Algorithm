@@ -2,56 +2,64 @@ package com.zzx.quick;
 
 import java.util.Arrays;
 
-// 忘了在哪找的写法，没看太懂
+/**
+ * @ClassName QuickSort
+ * @Description
+ * @Author zhangzx
+ * @Date 2019/6/28 15:11
+ * Version 1.0
+ **/
 public class QuickSort {
 
-    public static void quickSort(int arr[],int _left,int _right){
-        int left = _left;
-        int right = _right;
-        int temp = 0;
-        if(left <= right){   //待排序的元素至少有两个的情况
-            temp = arr[left];  //待排序的第一个元素作为基准元素
-            while(left != right){   //从左右两边交替扫描，直到left = right
+    // 我们的算法类不允许产生任何实例
+    private QuickSort(){}
 
-                while(right > left && arr[right] >= temp)
-                    right --;        //从右往左扫描，找到第一个比基准元素小的元素
-                arr[left] = arr[right];  //找到这种元素arr[right]后与arr[left]交换
-                System.out.println("右交换：");
-                for(int element : arr){
-                    System.out.print(element+" ");
-                }
+    // 对arr[l...r]部分进行partition操作
+    // 返回p, 使得arr[l...p-1] < arr[p] ; arr[p+1...r] > arr[p]
+    private static int partition(Comparable[] arr, int l, int r){
 
-                while(left < right && arr[left] <= temp)
-                    left ++;         //从左往右扫描，找到第一个比基准元素大的元素
-                arr[right] = arr[left];  //找到这种元素arr[left]后，与arr[right]交换
-                System.out.println("左交换：");
-                for(int element : arr){
-                    System.out.print(element+" ");
-                }
+        Comparable v = arr[l];
+
+        int j = l; // arr[l+1...j] < v ; arr[j+1...i) > v
+        for( int i = l + 1 ; i <= r ; i ++ )
+            if( arr[i].compareTo(v) < 0 ){
+                j ++;
+                swap(arr, j, i);
             }
-            arr[right] = temp;    //基准元素归位
-            System.out.println("归为后：");
-            for(int element : arr){
-                System.out.print(element+" ");
-            }
-            quickSort(arr, _left,left-1);  //对基准元素左边的元素进行递归排序
-            quickSort(arr, right+1,_right);  //对基准元素右边的进行递归排序
-        }
+
+        swap(arr, l, j);
+
+        return j;
     }
+
+    // 递归使用快速排序,对arr[l...r]的范围进行排序
+    private static void sort(Comparable[] arr, int l, int r){
+
+        if( l >= r )
+            return;
+
+        int p = partition(arr, l, r);
+        sort(arr, l, p-1 );
+        sort(arr, p+1, r);
+    }
+
+    public static void  sort(Comparable[] arr){
+
+        int n = arr.length;
+        sort(arr, 0, n-1);
+    }
+
+    private static void swap(Object[] arr, int i, int j) {
+        Object t = arr[i];
+        arr[i] = arr[j];
+        arr[j] = t;
+    }
+
+    // 测试 QuickSort
     public static void main(String[] args) {
-        int array[] = {5,10,3,1,7,2,8};
-        System.out.println("排序之前：");
-        for(int element : array){
-            System.out.print(element+" ");
-        }
-
-        quickSort(array,0,array.length-1);
-
-        System.out.println("\n排序之后：");
-        for(int element : array){
-            System.out.print(element+" ");
-        }
-
+        Comparable arr[] = {8, 9, 7, 6, 10, 11};
+        QuickSort q = new QuickSort();
+        q.sort(arr);
+        System.out.println(Arrays.toString(arr));
     }
-
 }

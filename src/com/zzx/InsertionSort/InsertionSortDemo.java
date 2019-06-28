@@ -11,7 +11,7 @@ import java.util.Arrays;
  **/
 public class InsertionSortDemo {
 
-    public static void insertSort(int arr[], int n) {
+    public void insertSort(int arr[], int n) {
         for (int i = 1; i < n; i ++) {
             int e = arr[i]; // 排序到的位置
             int j;
@@ -28,4 +28,10 @@ public class InsertionSortDemo {
 
     }
 
+    public static void main(String[] args) {
+        int[] arr = {8, 6, 5, 4, 3, 2, 1};
+        InsertionSortDemo insert = new InsertionSortDemo();
+        insert.insertSort(arr, arr.length);
+        System.out.println(Arrays.toString(arr));
+    }
 }
