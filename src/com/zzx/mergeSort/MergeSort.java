@@ -47,7 +47,6 @@ public class MergeSort {
                 j ++;
             }
         }
-
     }
 
     public static void main(String[] args) {
@@ -55,6 +54,5 @@ public class MergeSort {
         MergeSort m = new MergeSort();
         m.mergeSort(arr, 0, arr.length - 1);
         System.out.println(Arrays.toString(arr));
-
     }
 }

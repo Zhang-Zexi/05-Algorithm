@@ -3,21 +3,24 @@ package com.zzx.mergeSort;
 import java.util.Arrays;
 
 /**
- * @ClassName MergeSort4
+ * @ClassName MergeSort8
  * @Description
  * @Author zhangzx
- * @Date 2019/6/28 14:25
+ * @Date 2019/9/4 15:23
  * Version 1.0
  **/
-public class MergeSort4 {
-    private void mergeSort(int arr[], int l, int r) {
+public class MergeSort8 {
+
+    public void mergeSort(int arr[], int l, int r) {
         if (l >= r) {
             return;
         }
         int mid = (l + r) / 2;
         mergeSort(arr, l, mid);
         mergeSort(arr, mid + 1, r);
-        merge(arr, l, mid, r);
+        if (arr[mid] > arr[mid + 1]){
+            merge(arr, l, mid , r);
+        }
     }
 
     private void merge(int arr[], int l, int mid, int r) {
@@ -43,9 +46,10 @@ public class MergeSort4 {
             }
         }
     }
+
     public static void main(String[] args) {
         int[] arr = {12,33,28,86,15,62,9,38};
-        MergeSort4 m = new MergeSort4();
+        MergeSort8 m = new MergeSort8();
         m.mergeSort(arr, 0, arr.length - 1);
         System.out.println(Arrays.toString(arr));
     }

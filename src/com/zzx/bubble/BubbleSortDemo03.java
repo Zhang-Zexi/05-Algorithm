@@ -13,8 +13,11 @@ public class BubbleSortDemo03 {
 
     public void bubbleSort(int[] arr) {
         int x = 0;
-        for (int i = 0; i < arr.length - 1; i ++) {
-            for (int j = 0; j < arr.length - i - 1; j ++) {
+        // 比较的轮数是arr.length-1
+        for (int i = 0; i < arr.length - 1; i++) {
+            // 每轮比较的次数是arr.length-i-1
+            for (int j = 0; j < arr.length - i - 1; j++) {
+                // 交换
                 if (arr[j] > arr[j + 1]) {
                     x = arr[j + 1];
                     arr[j + 1] = arr[j];

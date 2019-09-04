@@ -3,13 +3,14 @@ package com.zzx.mergeSort;
 import java.util.Arrays;
 
 /**
- * @ClassName MergeSort4
+ * @ClassName MergeSort5
  * @Description
  * @Author zhangzx
- * @Date 2019/6/28 14:25
+ * @Date 2019/9/3 16:00
  * Version 1.0
  **/
-public class MergeSort4 {
+public class MergeSort5 {
+
     private void mergeSort(int arr[], int l, int r) {
         if (l >= r) {
             return;
@@ -17,16 +18,17 @@ public class MergeSort4 {
         int mid = (l + r) / 2;
         mergeSort(arr, l, mid);
         mergeSort(arr, mid + 1, r);
-        merge(arr, l, mid, r);
+        if (arr[mid] > arr[mid + 1]) {
+            merge(arr, l, mid, r);
+        }
     }
 
     private void merge(int arr[], int l, int mid, int r) {
-        int[] aux = new int[r - l + 1];
+        int aux[] = new int[r - l + 1];
         for (int i = l; i <= r; i ++) {
-            aux[i - l] = arr[i];
+            aux[i - l] = arr[i];// 减去偏移量l
         }
-        int i = l;
-        int j = mid + 1;
+        int i = l, j = mid + 1;
         for (int k = l; k <= r; k ++) {
             if (i > mid) {
                 arr[k] = aux[j - l];
@@ -43,9 +45,10 @@ public class MergeSort4 {
             }
         }
     }
+
     public static void main(String[] args) {
         int[] arr = {12,33,28,86,15,62,9,38};
-        MergeSort4 m = new MergeSort4();
+        MergeSort5 m = new MergeSort5();
         m.mergeSort(arr, 0, arr.length - 1);
         System.out.println(Arrays.toString(arr));
     }

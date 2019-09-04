@@ -3,14 +3,15 @@ package com.zzx.mergeSort;
 import java.util.Arrays;
 
 /**
- * @ClassName MergeSort4
+ * @ClassName MergeSort7
  * @Description
  * @Author zhangzx
- * @Date 2019/6/28 14:25
+ * @Date 2019/9/3 17:40
  * Version 1.0
  **/
-public class MergeSort4 {
-    private void mergeSort(int arr[], int l, int r) {
+public class MergeSort7 {
+
+    public void mergeSort(int arr[], int l, int r) {
         if (l >= r) {
             return;
         }
@@ -20,13 +21,12 @@ public class MergeSort4 {
         merge(arr, l, mid, r);
     }
 
-    private void merge(int arr[], int l, int mid, int r) {
+    private void merge(int[] arr, int l, int mid ,int r) {
         int[] aux = new int[r - l + 1];
         for (int i = l; i <= r; i ++) {
             aux[i - l] = arr[i];
         }
-        int i = l;
-        int j = mid + 1;
+        int i = l, j = mid + 1;
         for (int k = l; k <= r; k ++) {
             if (i > mid) {
                 arr[k] = aux[j - l];
@@ -34,7 +34,7 @@ public class MergeSort4 {
             } else if (j > r) {
                 arr[k] = aux[i - l];
                 i ++;
-            } else if (aux[i - l] < aux[j - l]) {
+            } else if (aux[i - l] <aux[j - l]) {
                 arr[k] = aux[i - l];
                 i ++;
             } else {
@@ -45,7 +45,7 @@ public class MergeSort4 {
     }
     public static void main(String[] args) {
         int[] arr = {12,33,28,86,15,62,9,38};
-        MergeSort4 m = new MergeSort4();
+        MergeSort7 m = new MergeSort7();
         m.mergeSort(arr, 0, arr.length - 1);
         System.out.println(Arrays.toString(arr));
     }
